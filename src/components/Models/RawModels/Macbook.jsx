@@ -47,8 +47,8 @@ export function Macbook(props) {
                 <Html
                   transform
                   occlude
-                  distanceFactor={1.15} // adjust based on camera distance
-                  position={[0.0007883736398071051, -0.002, 0.402]}
+                  distanceFactor={0.95} // adjust based on camera distance
+                  position={[-0.05, -0.002, 0.4]}
                   rotation={[Math.PI / 2, 0, 0]} // tweak slightly if needed
                   style={{
                     pointerEvents: "none", // optional: prevents interaction issues
@@ -56,8 +56,8 @@ export function Macbook(props) {
                 >
                   <div
                     style={{
-                      width: '1024px',
-                      height: '670px',
+                      width: '1400px',
+                      height: '800px',
                       overflow: 'hidden',
                       borderRadius: '0.5rem',
                       transform: 'scale(0.3)', // try tweaking scale if needed

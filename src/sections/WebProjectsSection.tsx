@@ -23,7 +23,7 @@ const projects: Projects[] = [
   {
     name: "Portfolio",
     description: "The portfolio you are looking at right now.",
-    url: "https://www.hotelolimpia.it/",
+    url: "https://portfolio-two-flax-84.vercel.app",
     icons: [{name: 'React.js', url:'/reactLogo.png'}, {name: 'Three.js', url:'threejsLogo.png'}, {name: 'GSAP', url:'gsapLogo.svg'}, {name: 'Motion', url:'framerLogo.png'}, {name: 'OpenAI API', url:'/openaiLogo.png'}]
   }
 ]
