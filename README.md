@@ -1,2 +1,1 @@
-# portfolio
-My personal portfolio
+to launch server: cd my-portfolio server    node server.js
