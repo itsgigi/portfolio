@@ -16,10 +16,8 @@ import type { Message } from "../utils/types";
 export default function ContactMeSection() {
     const ref = useRef<HTMLDivElement>(null)
     const [size, setSize] = useState({ width: 0, height: 0 })
-
     const [selectedEmails] = useState<number[]>([])
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
-
     const [messages, setMessages] = useState<Message[]>([
         { sender: "system", content: "Hey! Curious what this is about?" },
         { sender: "system", content: "I trained an AI model with some of my info. Ask me anything!" },
