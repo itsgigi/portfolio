@@ -7,9 +7,11 @@ import type { Message } from "../utils/types";
 interface VirtualKeyboardProps {
   messages: Message[];
   setMessages: (newMessages: Message[]) => void;
+  isLoading: boolean;
+  setIsLoading: (state: boolean) => void;
 }
 
-export default function VirtualKeyboard({ messages, setMessages }: VirtualKeyboardProps) {
+export default function VirtualKeyboard({ messages, setMessages, isLoading, setIsLoading }: VirtualKeyboardProps) {
   const keys = [
     ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
     ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
@@ -19,7 +21,6 @@ export default function VirtualKeyboard({ messages, setMessages }: VirtualKeyboa
 
   const [text, setText] = useState(""); // text from virtual keyboard
   const [shift, setShift] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
   // Use a single source of truth: combined text input
   const [input, setInput] = useState("");
@@ -89,7 +90,7 @@ export default function VirtualKeyboard({ messages, setMessages }: VirtualKeyboa
   }, [handleKeyPress]);  
 
   async function getGeminiResponse(geminiMessages: any) {
-    const res = await fetch("http://localhost:3001/api/gemini", {
+    const res = await fetch("https://my-portfolio-be-nine.vercel.app/api/gemini", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ messages: geminiMessages }),
@@ -111,7 +112,7 @@ export default function VirtualKeyboard({ messages, setMessages }: VirtualKeyboa
           onChange={(e) => updateInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSend()}
           placeholder="Ask me anything..."
-          className="bg-white rounded-full w-[85%] mx-2 p-1"
+          className="bg-white rounded-full w-[85%] mx-2 p-1 px-3"
         />
         <button
           onClick={handleSend}
@@ -129,11 +130,16 @@ export default function VirtualKeyboard({ messages, setMessages }: VirtualKeyboa
             {row.map((key) => (
               <button
                 key={key}
-                className={`key ${key === "return" ? "return-key" : ""} ${key === "space" ? "space-key" : ""}`}
+                className={`
+                  key 
+                  ${key === "return" ? "return-key" : ""} 
+                  ${key === "space" ? "space-key" : ""}
+                  active:scale-150 transition-transform duration-100 ease-out
+                `}
                 onClick={() => handleClick(key)}
               >
                 {key}
-              </button>
+              </button>            
             ))}
           </div>
         ))}

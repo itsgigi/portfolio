@@ -2,15 +2,15 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 const words = [
-  "restaurateur",
-  "metre",
-  "manager",
-  "receptionist",
-  "social media handler",
-  "3d enthusiast",
-  "AI researcher",
-  "freelancer",
-  "event organizer",
+  "web",
+  "sass",
+  "AI",
+  "hospitality",
+  "social media",
+  "3d",
+  "relations",
+  "sales",
+  "events",
   "developer"
 ];
 

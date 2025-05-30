@@ -6,12 +6,14 @@ import {
     useMotionValue
 } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import { FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaInstagram, FaLinkedin, FaWifi } from "react-icons/fa";
 import { IoMailOutline } from "react-icons/io5";
 import CustomButton from "../components/DrawOutlineButton";
 import BubbleText from "../components/BubbleText";
 import VirtualKeyboard from "../components/VirtualKeyboard";
 import type { Message } from "../utils/types";
+import TypingIndicator from "../components/TypingIndicator"
+import { BsReception4, BsBatteryFull } from "react-icons/bs";
 
 export default function ContactMeSection() {
     const ref = useRef<HTMLDivElement>(null)
@@ -22,6 +24,7 @@ export default function ContactMeSection() {
         { sender: "system", content: "Hey! Curious what this is about?" },
         { sender: "system", content: "I trained an AI model with some of my info. Ask me anything!" },
     ]);     
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         setSize({
@@ -29,6 +32,25 @@ export default function ContactMeSection() {
             height: ref.current?.clientHeight || 0,
         })
     }, [ref])
+
+    function useCurrentTime() {
+        const [time, setTime] = useState(() => {
+          const now = new Date();
+          return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        });
+      
+        useEffect(() => {
+          const interval = setInterval(() => {
+            const now = new Date();
+            setTime(now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+          }, 60000); // update every minute
+      
+          return () => clearInterval(interval);
+        }, []);
+      
+        return time;
+    }
+    const currentTime = useCurrentTime();
 
     const closeModal = () => setIsDeleteModalOpen(false)     
 
@@ -38,13 +60,23 @@ export default function ContactMeSection() {
                 <BubbleText text="CONTACT ME*" style="text-8xl font-bold opacity-50 tracking-tighter"/>
             </div>
             <div className="iphone-mock">
-                <div className="iphone-screen">
+                <div className="iphone-screen font-[Open_Sans]">
                     <div className="dynamic-island"></div>
+                    <div className="absolute top-5 left-0 right-0 flex justify-between items-center px-5 text-black text-sm z-50">
+                        {/* Ora */}
+                        <p>{currentTime}</p>
 
+                        {/* Icone status */}
+                        <div className="flex gap-2 items-center">
+                            <BsReception4 className="w-4 h-4" />
+                            <FaWifi className="w-4 h-4" />
+                            <BsBatteryFull className="w-5 h-5" />
+                        </div>
+                    </div>
                     <div className="w-full h-full bg-white rounded-[40px] overflow-hidden">
 
                         {/* Full screen chat body with header */}
-                        <div className="flex flex-col h-full font-[Open_Sans]">
+                        <div className="flex flex-col h-full">
                             {/* Header */}
                             <div className="bg-gray-100/50 px-4 py-2 pt-14 flex items-center gap-2">
                                 <div className="w-8 h-8 bg-[url(/luigi.jpeg)] bg-cover rounded-full" />
@@ -60,9 +92,13 @@ export default function ContactMeSection() {
                                         {msg.content}
                                     </div>
                                 ))}
-                                {/* {isLoading && <div className="self-start text-gray-400 italic">Typing...</div>} */}
+                                {isLoading && (
+                                    <div className="p-2 bg-gray-100 rounded-lg w-fit">
+                                        <TypingIndicator />
+                                    </div>
+                                )}
                             </div>
-                            <VirtualKeyboard messages={messages!} setMessages={setMessages}/>
+                            <VirtualKeyboard messages={messages!} setMessages={setMessages} isLoading={isLoading} setIsLoading={setIsLoading}/>
                         </div>
                     </div>
 
