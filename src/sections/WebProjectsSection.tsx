@@ -21,6 +21,12 @@ const projects: Projects[] = [
     icons: [{name: 'React.js', url:'/reactLogo.png'}, {name: 'Hygraph', url:'hygraphLogo.png'}]
   },
   {
+    name: "mAIshed (WIP)",
+    description: "A repository of react components and hooks AI oriented.",
+    url: "https://m-ai-shed.vercel.app",
+    icons: [{name: 'React.js', url:'/reactLogo.png'}, {name: 'Three.js', url:'threejsLogo.png'}, {name: 'GSAP', url:'gsapLogo.svg'}, {name: 'Motion', url:'framerLogo.png'}]
+  },
+  {
     name: "Portfolio",
     description: "The portfolio you are looking at right now.",
     url: "https://portfolio-two-flax-84.vercel.app",
@@ -40,10 +46,6 @@ const WebProjectsSection = () => {
 
   return (
     <section id="hero" className="relative overflow-hidden">
-      <div className="absolute top-0 left-0 z-10">
-        <img src="/images/bg.png" alt="" />
-      </div>
-
       <div className="hero-layout">
         {/* LEFT: Hero Content */}
         <header className="flex flex-col justify-center md:w-full w-screen md:px-20 px-5 overflow-auto">
@@ -59,11 +61,11 @@ const WebProjectsSection = () => {
               {projects.map((project, idx) => (
                 <div
                   key={idx}
-                  className={`cursor-pointer p-4 rounded-lg hover:bg-black-200 transition ${activeProject === project.url ? 'bg-gradient-to-br from-indigo-300/70 to-indigo-900 drop-shadow-xl' : ''}`}
+                  className={`cursor-pointer p-1 xl:p-4 rounded-lg hover:bg-black-200 transition ${activeProject === project.url ? 'bg-gradient-to-br from-indigo-300/70 to-indigo-900 drop-shadow-xl' : ''}`}
                   onClick={() => setActiveProject(project.url)}
                 >
-                  <h2 className="text-2xl font-bold">{project.name}</h2>
-                  <p className="text-white-50">{project.description}</p>
+                  <h2 className="text-xl xl:text-2xl font-bold">{project.name}</h2>
+                  <p className="text-white-50 text-md xl:text-lg">{project.description}</p>
                   <div className="flex w-full gap-1 mt-1">
                   { activeProject === project.url && project.icons?.map((icon, index) => (
                     <motion.nav
@@ -75,7 +77,7 @@ const WebProjectsSection = () => {
                     >
                       <div>
                         <a data-tooltip-id="my-tooltip" data-tooltip-content={icon.name}>
-                          <img src={icon.url} alt={icon.name} className="w-7 h-7" />
+                          <img src={icon.url} alt={icon.name} className="w-5 xl:w-7 h-5 xl:h-7" />
                         </a>
                         <Tooltip id="my-tooltip" />
                       </div>
@@ -90,7 +92,7 @@ const WebProjectsSection = () => {
         </header>
 
         {/* RIGHT: 3D Model or Visual */}
-        <figure>
+        <figure className="hidden xl:flex">
           <div className="hero-3d-layout">
             <PcModel activeProject={activeProject}/>
           </div>

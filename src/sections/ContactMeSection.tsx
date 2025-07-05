@@ -14,6 +14,7 @@ import VirtualKeyboard from "../components/VirtualKeyboard";
 import type { Message } from "../utils/types";
 import TypingIndicator from "../components/TypingIndicator"
 import { BsReception4, BsBatteryFull } from "react-icons/bs";
+import InputMessage from "../components/InputMessage";
 
 export default function ContactMeSection() {
     const ref = useRef<HTMLDivElement>(null)
@@ -56,8 +57,8 @@ export default function ContactMeSection() {
 
     return (
         <div className="iphone-wrapper grid-cols-3 place-items-center">
-            <div className="translate-y-[75%] h-full">
-                <BubbleText text="CONTACT ME*" style="text-8xl font-bold opacity-50 tracking-tighter"/>
+            <div className="translate-y-[70%] h-[85vh]">
+                <BubbleText text="CONTACT ME*" style="text-7xl xl:text-8xl font-bold opacity-50 tracking-tighter"/>
             </div>
             <div className="iphone-mock">
                 <div className="iphone-screen font-[Open_Sans]">
@@ -98,7 +99,12 @@ export default function ContactMeSection() {
                                     </div>
                                 )}
                             </div>
-                            <VirtualKeyboard messages={messages!} setMessages={setMessages} isLoading={isLoading} setIsLoading={setIsLoading}/>
+                            <div className="hidden xl:block">
+                                <VirtualKeyboard messages={messages!} setMessages={setMessages} isLoading={isLoading} setIsLoading={setIsLoading}/>
+                            </div>
+                            <div className="block xl:hidden">
+                                <InputMessage  messages={messages!} setMessages={setMessages} isLoading={isLoading} setIsLoading={setIsLoading}/>
+                            </div>
                         </div>
                     </div>
 
@@ -218,46 +224,6 @@ function GradientOverlay({
                     originY: 1,
                 }}
             />
-
-            <motion.div
-                className="gradient-circle top-left"
-                initial={{ opacity: 0 }}
-                animate={{
-                    opacity: 0.9,
-                    transition: { duration: enterDuration },
-                }}
-                exit={{
-                    opacity: 0,
-                    transition: { duration: exitDuration },
-                }}
-                style={{
-                    scale: breathe,
-                    width: size.width * 2,
-                    height: size.width * 2,
-                    top: -size.width,
-                    left: -size.width,
-                }}
-            />
-
-            <motion.div
-                className="gradient-circle bottom-right"
-                initial={{ opacity: 0 }}
-                animate={{
-                    opacity: 0.9,
-                    transition: { duration: enterDuration },
-                }}
-                exit={{
-                    opacity: 0,
-                    transition: { duration: exitDuration },
-                }}
-                style={{
-                    scale: breathe,
-                    width: size.width * 2,
-                    height: size.width * 2,
-                    top: size.height - size.width,
-                    left: 0,
-                }}
-            />
         </div>
     )
 }
@@ -360,15 +326,15 @@ function StyleSheet() {
             justify-content: center;
             align-items: center;
             width: 100%;
-            height: 100vh;
-            padding: 20px;
+            height: 85vh;
+            padding-inline: 20px;
             box-sizing: border-box;
         }
 
         .iphone-mock {
             position: relative;
             width: 375px;
-            height: 760px;
+            height: 740px;
             background-color: #1a1a1a;
             border-radius: 50px;
             box-shadow: 0 0 0 14px #121212, 0 0 0 17px #232323, 0 20px 40px rgba(0, 0, 0, 0.8);
@@ -377,10 +343,10 @@ function StyleSheet() {
             overflow: hidden;
         }
 
-        @media (max-height: 900px) {
+        @media (max-height: 800px) {
             .iphone-mock {
                 width: 375px;
-                height: 760px;
+                height: 530px;
             }
         }
 
@@ -394,7 +360,7 @@ function StyleSheet() {
                 height: 100%;
                 background-color: transparent;
                 border-radius: 0;
-                padding-top: 50px;
+                padding-bottom: 20px;
                 box-shadow: none;
             }
 
@@ -472,17 +438,6 @@ function StyleSheet() {
             margin-top: 10px;
         }
 
-        .email-app-container {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            background-color: #0b1011;
-            color: #f5f5f5;
-            border: none;
-            border-radius: 0;
-            overflow: hidden;
-        }
-
         .header {
             display: flex;
             justify-content: space-between;
@@ -494,63 +449,6 @@ function StyleSheet() {
         .header h1 {
             font-size: 24px;
             margin: 0;
-        }
-
-        .delete-button {
-            background-color: #fff4;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        .delete-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            background-color: #fff0;
-        }
-
-        .email-list {
-            flex: 1;
-            overflow-y: auto;
-            padding: 0;
-        }
-
-        .email-item {
-            display: flex;
-            padding: 16px 20px;
-            border-bottom: 1px solid #1d2628;
-            align-items: center;
-            display: flex;
-            gap: 16px;
-        }
-
-        .checkbox {
-            width: 20px;
-            height: 20px;
-        }
-
-        .email-content {
-            flex: 1;
-        }
-
-        .email-content h3 {
-            margin: 0 0 8px 0;
-            font-size: 16px;
-        }
-
-        .email-content p {
-            margin: 0;
-            font-size: 14px;
-            opacity: 0.7;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .overlay-root {
@@ -575,79 +473,6 @@ function StyleSheet() {
             justify-content: center;
             z-index: 1001;
             will-change: opacity;
-        }
-
-        .modal-content {
-            width: 75%;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            will-change: transform;
-        }
-
-        .modal-content p {
-            color: #f5f5f5;
-        }
-
-        .modal-content header {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .controls {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-
-        button.delete {
-            background-color: #f5f5f5;
-            color: #0f1115;
-            border-radius: 20px;
-            padding: 10px 20px;
-        }
-
-        .gradient-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 1001;
-        }
-
-        .expanding-circle {
-            position: absolute;
-            border-radius: 50%;
-            background:  rgb(251, 148, 137,0.8);
-            filter: blur(15px);
-            transform-origin: center;
-            will-change: transform;
-        }
-
-        .gradient-circle {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(100px);
-            width: 200%;
-            aspect-ratio: 1;
-            will-change: transform;
-        }
-
-        .top-left {
-            background: rgb(246, 63, 42, 0.9);
-        }
-
-        .bottom-right {
-            background: rgb(243, 92, 76, 0.9);
         }
     `}</style>
     )

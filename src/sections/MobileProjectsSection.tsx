@@ -25,14 +25,10 @@ const MobileProjectsSection = () => {
 
   return (
     <section id="hero" className="relative overflow-hidden">
-      <div className="absolute top-0 left-0 z-10">
-        <img src="/images/bg.png" alt="" />
-      </div>
-
       <div className="mobile-projects-layout">
         {/* RIGHT: Hero Content */}
         <header className="flex flex-col justify-center md:w-full w-screen md:px-20 px-5 overflow-auto items-end">
-          <BubbleText text="MOBILE PROJECTS" style="text-8xl font-bold opacity-50 mb-8 tracking-tighter"/>
+          <BubbleText text="MOBILE PROJECTS" style="text-7xl xl:text-8xl font-bold opacity-50 mb-8 tracking-tighter"/>
           <motion.div 
             className="flex flex-col gap-7 over w-full"
             initial={{ opacity: 0, y: 50 }}
@@ -56,7 +52,7 @@ const MobileProjectsSection = () => {
         </header>
 
         {/* LEFT: 3D Model or Visual */}
-        <figure>
+        <figure className="opacity-0 xl:opacity-100">
           <div className="hero-3d-layout-left">
             <IphoneModel activeProject={activeProject}/>
           </div>

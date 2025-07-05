@@ -102,11 +102,11 @@ section {
   }
 
   .hero-layout {
-    @apply relative z-10 md:h-dvh h-[80vh] flex xl:items-center items-start justify-center;
+    @apply relative z-10 h-[87vh] flex xl:items-center items-start justify-center;
   }
 
   .mobile-projects-layout {
-    @apply relative z-10 md:h-dvh h-[80vh] min-w-screen flex xl:items-center justify-center;
+    @apply relative z-10 h-[87vh] min-w-screen flex xl:items-center justify-center -mt-20;
   }
 
   .hero-text {

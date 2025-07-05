@@ -30,8 +30,8 @@ const Header = () => {
   }, [])  
 
   return (
-    <div className="absolute top-0 flex w-full items-center justify-between z-100 rounded-full">
-      <img src="/logo.png" className="h-30 w-30"/>
+    <div className="flex w-full items-center justify-between rounded-full">
+      <img src="/logo.png" className="h-[13vh] w-30"/>
       <header className="navbar">
         <nav className="desktop">
           <ul className="flex gap-2">

@@ -58,7 +58,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <div className="relative h-screen flex flex-col gap-2 items-center justify-center overflow-hidden">
+    <div className="relative h-[87vh] flex flex-col gap-2 items-center justify-center overflow-hidden -mt-15">
         {/* This stays hidden until end */}
           <h1
             className={`text-2xl md:text-4xl text-white tracking-wide uppercase font-semibold transition-opacity duration-700 ${

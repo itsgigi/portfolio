@@ -19,10 +19,8 @@ export default function VirtualKeyboard({ messages, setMessages, isLoading, setI
     ["123", "🌐", "space", "return"]
   ];
 
-  const [text, setText] = useState(""); // text from virtual keyboard
+  const [text, setText] = useState("");
   const [shift, setShift] = useState(false);
-
-  // Use a single source of truth: combined text input
   const [input, setInput] = useState("");
 
   const updateInput = (newText: string) => {

@@ -27,10 +27,6 @@ const OtherProjectsSection = () => {
 
   return (
     <section id="hero" className="relative overflow-hidden">
-      <div className="absolute top-0 left-0 z-10">
-        <img src="/images/bg.png" alt="" />
-      </div>
-
       <div className="hero-layout">
         {/* LEFT: Hero Content */}
         <header className="flex flex-col justify-center md:w-full w-screen md:px-20 px-5 overflow-auto">
@@ -62,7 +58,7 @@ const OtherProjectsSection = () => {
                     >
                       <div>
                         <a data-tooltip-id="my-tooltip" data-tooltip-content={icon.name}>
-                          <img src={icon.url} alt={icon.name} className="w-7 h-7" />
+                          <img src={icon.url} alt={icon.name} className="w-4 xl:w-7 h-4 xl:h-7" />
                         </a>
                         <Tooltip id="my-tooltip" />
                       </div>
@@ -72,12 +68,12 @@ const OtherProjectsSection = () => {
                 </div>
               ))}
             </motion.div>
-            <BubbleText text="OTHER PROJECTS" style="text-8xl font-bold opacity-50 mt-8 tracking-tighter"/>
+            <BubbleText text="OTHER PROJECTS" style="text-7xl xl:text-8xl font-bold opacity-50 mt-8 tracking-tighter"/>
           </div>
         </header>
 
         {/* RIGHT: 3D Model or Visual */}
-        <figure>
+        <figure className="opacity-0 xl:opacity-100">
           <div className="hero-card-layout">
             <DragCards />
           </div>
