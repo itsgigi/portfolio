@@ -63,7 +63,7 @@ export default function ContactMeSection() {
             <div className="iphone-mock">
                 <div className="iphone-screen font-[Open_Sans]">
                     <div className="dynamic-island"></div>
-                    <div className="absolute top-5 left-0 right-0 flex justify-between items-center px-5 text-black text-sm z-50">
+                    <div className="absolute top-5 left-0 right-0 flex justify-between items-center px-5 text-black text-sm z-10">
                         {/* Ora */}
                         <p>{currentTime}</p>
 
@@ -122,7 +122,7 @@ export default function ContactMeSection() {
                 </div>
             </div>
             <motion.div 
-                className="flex flex-col items-start"
+                className="flex flex-col items-end xl:items-start text-end xl:text-start"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}

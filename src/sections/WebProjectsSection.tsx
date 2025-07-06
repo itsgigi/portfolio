@@ -6,10 +6,11 @@ import type { Projects } from "../utils/types";
 import { Tooltip } from 'react-tooltip'
 import { motion } from "motion/react";
 import BubbleText from "../components/BubbleText";
+import CustomButton from "../components/DrawOutlineButton";
 
 const projects: Projects[] = [
   {
-    name: "Alessia’s Flat",
+    name: "Alessia's Flat",
     description: "House rental platform built with Next.js and Hygraph.",
     url: "https://alessias-flat.vercel.app",
     icons: [{name: 'Next.js', url:'/nextjsLogo.png'}, {name: 'Hygraph', url:'hygraphLogo.png'}, {name: 'Maps API', url:'mapsLogo.png'}, {name: 'Zustand', url:'zustandLogo.svg'}, {name: 'EmailJS', url:'emailjsLogo.png'}]
@@ -64,25 +65,48 @@ const WebProjectsSection = () => {
                   className={`cursor-pointer p-1 xl:p-4 rounded-lg hover:bg-black-200 transition ${activeProject === project.url ? 'bg-gradient-to-br from-indigo-300/70 to-indigo-900 drop-shadow-xl' : ''}`}
                   onClick={() => setActiveProject(project.url)}
                 >
-                  <h2 className="text-xl xl:text-2xl font-bold">{project.name}</h2>
-                  <p className="text-white-50 text-md xl:text-lg">{project.description}</p>
-                  <div className="flex w-full gap-1 mt-1">
-                  { activeProject === project.url && project.icons?.map((icon, index) => (
-                    <motion.nav
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
-                      viewport={{ once: false, amount: 0.2 }}
-                    >
-                      <div>
-                        <a data-tooltip-id="my-tooltip" data-tooltip-content={icon.name}>
-                          <img src={icon.url} alt={icon.name} className="w-5 xl:w-7 h-5 xl:h-7" />
-                        </a>
-                        <Tooltip id="my-tooltip" />
+                  <div className="flex gap-1 items-center">
+                    <div>
+                      <h2 className="text-xl xl:text-2xl font-bold">{project.name}</h2>
+                      <p className="text-white-50 text-md xl:text-lg">{project.description}</p>
+                      <div className="flex w-full gap-1 mt-1">
+                      { activeProject === project.url && project.icons?.map((icon, index) => (
+                        <motion.nav
+                          key={index}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.4, delay: index * 0.1 }}
+                          viewport={{ once: false, amount: 0.2 }}
+                        >
+                          <div>
+                            <a data-tooltip-id="my-tooltip" data-tooltip-content={icon.name}>
+                              <img src={icon.url} alt={icon.name} className="w-5 xl:w-7 h-5 xl:h-7" />
+                            </a>
+                            <Tooltip id="my-tooltip" />
+                          </div>
+                        </motion.nav>
+                      ))}
                       </div>
-                    </motion.nav>
-                  ))}
+                    </div>
+                    {activeProject === project.url && (
+                      <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.4, delay: 0.3 }}
+                        className="ml-4"
+                      >
+                        <a
+                          href={project.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-tooltip-id={`visit-tooltip-${idx}`}
+                          data-tooltip-content={`Visit ${project.name}`}
+                        >
+                          <CustomButton text="Visit" sx="!p-2" fontSize={14} />
+                        </a>
+                        <Tooltip id={`visit-tooltip-${idx}`} />
+                      </motion.div>
+                    )}
                   </div>
                 </div>
               ))}

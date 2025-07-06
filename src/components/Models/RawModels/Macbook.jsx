@@ -48,7 +48,7 @@ export function Macbook(props) {
                   transform
                   occlude
                   distanceFactor={0.95} // adjust based on camera distance
-                  position={[-0.05, -0.002, 0.4]}
+                  position={[0.05, -0.002, 0.4]}
                   rotation={[Math.PI / 2, 0, 0]} // tweak slightly if needed
                   style={{
                     pointerEvents: "none", // optional: prevents interaction issues
