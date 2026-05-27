@@ -18,7 +18,7 @@ export default function HeroSection() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [showNotJustA, setShowNotJustA] = useState(false);
   const wordRef = useRef(null);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const getSpeedForIndex = (index: number) => {
     const total = words.length - 1;
