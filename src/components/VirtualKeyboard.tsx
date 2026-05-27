@@ -38,16 +38,13 @@ export default function VirtualKeyboard({ messages, setMessages, isLoading, setI
     setText("");
     setIsLoading(true);
 
-    // Format for Gemini
-    const geminiFormatted = [
-      ...updatedMessages.map((m) => ({
-        role: m.sender === "user" ? "user" : "model",
-        parts: [{ text: m.content }],
-      })),
-    ];
+    const openaiFormatted = updatedMessages.map((m) => ({
+      role: m.sender === "user" ? "user" as const : "assistant" as const,
+      content: m.content,
+    }));
 
     try {
-      const reply = await getGeminiResponse(geminiFormatted);
+      const reply = await getOpenAIResponse(openaiFormatted);
       const aiReply: Message = { sender: "system", content: reply };
       setMessages([...updatedMessages, aiReply]);
     } catch (e) {
@@ -87,8 +84,8 @@ export default function VirtualKeyboard({ messages, setMessages, isLoading, setI
     return () => window.removeEventListener("keydown", handleKeyPress);
   }, [handleKeyPress]);  
 
-  async function getGeminiResponse(geminiMessages: any) {
-    const res = await fetch("https://my-portfolio-be-nine.vercel.app/api/gemini", {
+  async function getOpenAIResponse(geminiMessages: any) {
+    const res = await fetch("https://my-portfolio-be-nine.vercel.app/api/openai", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ messages: geminiMessages }),

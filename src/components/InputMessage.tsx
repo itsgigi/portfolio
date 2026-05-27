@@ -1,7 +1,7 @@
 import { IoSend } from "react-icons/io5";
 import { useState } from "react";
 import type { Message } from "../utils/types";
-import { useGetGeminiResponse } from "../hooks/useGetGeminiResponse";
+import { useGetOpenAIResponse } from "../hooks/useGetOpenAIResponse";
 
 interface InputMessageProps {
     messages: Message[];
@@ -13,7 +13,7 @@ interface InputMessageProps {
 
 const InputMessage = ({ messages, setMessages, isLoading, setIsLoading }: InputMessageProps) => {
     const [input, setInput] = useState("");
-    const { getGeminiResponse } = useGetGeminiResponse();
+    const { getOpenAIResponse } = useGetOpenAIResponse();
 
     const updateInput = (newText: string) => {
         setInput(newText);
@@ -28,16 +28,13 @@ const InputMessage = ({ messages, setMessages, isLoading, setIsLoading }: InputM
         setInput("");
         setIsLoading(true);
     
-        // Format for Gemini
-        const geminiFormatted = [
-          ...updatedMessages.map((m) => ({
-            role: m.sender === "user" ? "user" as const : "assistant" as const,
-            content: m.content,
-          })),
-        ];
-    
+        const openaiFormatted = updatedMessages.map((m) => ({
+          role: m.sender === "user" ? "user" as const : "assistant" as const,
+          content: m.content,
+        }));
+
         try {
-          const reply = await getGeminiResponse(geminiFormatted);
+          const reply = await getOpenAIResponse(openaiFormatted);
           if (reply) {
             const aiReply: Message = { sender: "system", content: reply };
             setMessages([...updatedMessages, aiReply]);
