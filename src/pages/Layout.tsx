@@ -4,12 +4,13 @@ import Header from "../components/Header";
 const Layout = () => {
   return (
     <div className="w-screen h-screen flex-1">
-      {/* HEADER */}
-      <Header />
+      <div className="fixed top-0 left-0 w-full z-[100]">
+        <Header />
+      </div>
 
-      <Outlet />
-
-      {/* FOOTER */}
+      <div className="pt-[13vh] h-full">
+        <Outlet />
+      </div>
     </div>
   )
 };
