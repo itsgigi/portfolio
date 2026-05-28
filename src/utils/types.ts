@@ -3,6 +3,7 @@ export type Projects = {
   description: string;
   url: string;
   icons?: Icon[]
+  bullets?: string[]
 }
   
 export type Icon = {

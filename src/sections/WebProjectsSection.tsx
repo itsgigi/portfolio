@@ -7,36 +7,61 @@ import { Tooltip } from 'react-tooltip'
 import { motion } from "motion/react";
 import BubbleText from "../components/BubbleText";
 import CustomButton from "../components/DrawOutlineButton";
+import ProjectModal from "../components/ProjectModal";
 
 const projects: Projects[] = [
   {
     name: "Alessia's Flat",
     description: "House rental platform built with Next.js and Hygraph.",
     url: "https://alessias-flat.vercel.app",
-    icons: [{name: 'Next.js', url:'/nextjsLogo.png'}, {name: 'Hygraph', url:'hygraphLogo.png'}, {name: 'Maps API', url:'mapsLogo.png'}, {name: 'Zustand', url:'zustandLogo.svg'}, {name: 'EmailJS', url:'emailjsLogo.png'}]
+    icons: [{name: 'Next.js', url:'/nextjsLogo.png'}, {name: 'Hygraph', url:'hygraphLogo.png'}, {name: 'Maps API', url:'mapsLogo.png'}, {name: 'Zustand', url:'zustandLogo.svg'}, {name: 'EmailJS', url:'emailjsLogo.png'}],
+    bullets: [
+      "Headless CMS with Hygraph for property listings — editors update content without touching code",
+      "Google Maps API integration for location display and nearby POI",
+      "Zustand for lightweight global state (filters, booking flow) without Redux overhead",
+      "EmailJS for serverless contact form — no backend needed for MVP",
+    ]
   },
   {
     name: "DaysOf landing",
     description: "Landing page for days and nights of milan.",
     url: "https://days-of-chi.vercel.app/days",
-    icons: [{name: 'React.js', url:'/reactLogo.png'}, {name: 'Hygraph', url:'hygraphLogo.png'}]
+    icons: [{name: 'React.js', url:'/reactLogo.png'}, {name: 'Hygraph', url:'hygraphLogo.png'}],
+    bullets: [
+      "Hygraph CMS drives all event content — new events published without deploys",
+      "React with dynamic routing per event category (days vs nights)",
+      "Responsive layout optimized for mobile-first discovery experience",
+    ]
   },
   {
     name: "mAIshed (WIP)",
     description: "A repository of react components and hooks AI oriented.",
     url: "https://m-ai-shed.vercel.app",
-    icons: [{name: 'React.js', url:'/reactLogo.png'}, {name: 'Three.js', url:'threejsLogo.png'}, {name: 'GSAP', url:'gsapLogo.svg'}, {name: 'Motion', url:'framerLogo.png'}]
+    icons: [{name: 'React.js', url:'/reactLogo.png'}, {name: 'Three.js', url:'threejsLogo.png'}, {name: 'GSAP', url:'gsapLogo.svg'}, {name: 'Motion', url:'framerLogo.png'}],
+    bullets: [
+      "Component library architecture — each AI hook is isolated, tree-shakeable, and documented inline",
+      "Three.js used for 3D UI demos embedded directly in component previews",
+      "GSAP + Framer Motion combined for timeline-driven vs gesture-driven animations",
+      "Designed as open-source: API surface kept minimal to reduce integration friction",
+    ]
   },
   {
     name: "Portfolio",
     description: "The portfolio you are looking at right now.",
     url: "https://portfolio-two-flax-84.vercel.app",
-    icons: [{name: 'React.js', url:'/reactLogo.png'}, {name: 'Three.js', url:'threejsLogo.png'}, {name: 'GSAP', url:'gsapLogo.svg'}, {name: 'Motion', url:'framerLogo.png'}, {name: 'OpenAI API', url:'/openaiLogo.png'}]
+    icons: [{name: 'React.js', url:'/reactLogo.png'}, {name: 'Three.js', url:'threejsLogo.png'}, {name: 'GSAP', url:'gsapLogo.svg'}, {name: 'Motion', url:'framerLogo.png'}, {name: 'OpenAI API', url:'/openaiLogo.png'}],
+    bullets: [
+      "Three.js 3D models (PC, iPhone) render live website previews via iframe inside WebGL texture",
+      "GSAP ScrollTrigger drives section entrance animations tied to scroll position",
+      "OpenAI API powers the terminal chat — context-aware answers about my work",
+      "Single-page SPA with hash-based navigation and IntersectionObserver for active nav state",
+    ]
   }
 ]
 
 const WebProjectsSection = () => {
   const [activeProject, setActiveProject] = useState<string>(projects[0].url);
+  const [modalProject, setModalProject] = useState<Projects | null>(null);
   useGSAP(() => {
     gsap.fromTo(
       ".hero-text h1",
@@ -95,16 +120,12 @@ const WebProjectsSection = () => {
                         transition={{ duration: 0.4, delay: 0.3 }}
                         className="ml-4"
                       >
-                        <a
-                          href={project.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          data-tooltip-id={`visit-tooltip-${idx}`}
-                          data-tooltip-content={`Visit ${project.name}`}
-                        >
-                          <CustomButton text="Visit" sx="!p-2" fontSize={14} />
-                        </a>
-                        <Tooltip id={`visit-tooltip-${idx}`} />
+                        <CustomButton
+                          text="Details"
+                          sx="!p-2"
+                          fontSize={14}
+                          onClick={() => setModalProject(project)}
+                        />
                       </motion.div>
                     )}
                   </div>
@@ -126,6 +147,7 @@ const WebProjectsSection = () => {
         </figure>
       </div>
 
+      <ProjectModal project={modalProject} onClose={() => setModalProject(null)} />
     </section>
   );
 };

@@ -4,17 +4,27 @@ import { useState } from "react";
 import IphoneModel from "../components/Models/Scenes/IphoneModel";
 import BubbleText from "../components/BubbleText";
 import { motion } from "motion/react";
+import type { Projects } from "../utils/types";
+import CustomButton from "../components/DrawOutlineButton";
+import ProjectModal from "../components/ProjectModal";
 
-const projects = [
+const projects: Projects[] = [
   {
     name: "Days of Milan App",
     description: "Restaurants, bars events and much more to explore.",
-    url: "https://alessias-flat.vercel.app"
+    url: "https://alessias-flat.vercel.app",
+    bullets: [
+      "React Native with Expo for cross-platform iOS/Android from single codebase",
+      "Location-based filtering — content sorted by proximity using device GPS",
+      "Offline-first architecture: events cached locally so app works in low connectivity",
+      "Deep linking support for sharing specific venues directly from the app",
+    ]
   },
 ]
 
 const MobileProjectsSection = () => {
   const [activeProject, setActiveProject] = useState<string>(projects[0].url);
+  const [modalProject, setModalProject] = useState<Projects | null>(null);
   useGSAP(() => {
     gsap.fromTo(
       ".hero-text h1",
@@ -45,6 +55,21 @@ const MobileProjectsSection = () => {
                 >
                   <h2 className="text-2xl font-bold">{project.name}</h2>
                   <p className="text-white-50">{project.description}</p>
+                  {activeProject === project.url && (
+                    <motion.div
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: 0.3 }}
+                      className="mt-2 flex justify-end"
+                    >
+                      <CustomButton
+                        text="Details"
+                        sx="!p-2"
+                        fontSize={14}
+                        onClick={() => setModalProject(project)}
+                      />
+                    </motion.div>
+                  )}
                 </div>
               ))}
             </div>
@@ -59,6 +84,7 @@ const MobileProjectsSection = () => {
         </figure>
       </div>
 
+      <ProjectModal project={modalProject} onClose={() => setModalProject(null)} />
     </section>
   );
 };

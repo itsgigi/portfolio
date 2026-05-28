@@ -6,17 +6,26 @@ import { Tooltip } from 'react-tooltip'
 import { motion } from "motion/react";
 import BubbleText from "../components/BubbleText";
 import { DragCards } from "../components/DragCards";
+import CustomButton from "../components/DrawOutlineButton";
+import ProjectModal from "../components/ProjectModal";
 
 const projects: Projects[] = [
   {
     name: "Nights of milan",
     description: "Turning online connections into offline experiences.",
     url: "https://alessias-flat.vercel.app",
+    bullets: [
+      "Event-driven social platform connecting strangers through curated Milan nightlife experiences",
+      "Real-time RSVP system built to handle concurrent attendee updates without conflicts",
+      "Moderation layer for user-generated event proposals before going live",
+      "Analytics dashboard for organizers tracking attendance trends and engagement",
+    ]
   },
 ]
 
 const OtherProjectsSection = () => {
   const [activeProject, setActiveProject] = useState<string>(projects[0].url);
+  const [modalProject, setModalProject] = useState<Projects | null>(null);
   useGSAP(() => {
     gsap.fromTo(
       ".hero-text h1",
@@ -45,8 +54,26 @@ const OtherProjectsSection = () => {
                   className={`cursor-pointer p-4 rounded-lg hover:bg-black-200 transition ${activeProject === project.url ? 'bg-gradient-to-br from-indigo-300/70 to-indigo-900 drop-shadow-xl' : ''}`}
                   onClick={() => setActiveProject(project.url)}
                 >
-                  <h2 className="text-2xl font-bold">{project.name}</h2>
-                  <p className="text-white-50">{project.description}</p>
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <h2 className="text-2xl font-bold">{project.name}</h2>
+                      <p className="text-white-50">{project.description}</p>
+                    </div>
+                    {activeProject === project.url && (
+                      <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.4, delay: 0.3 }}
+                      >
+                        <CustomButton
+                          text="Details"
+                          sx="!p-2"
+                          fontSize={14}
+                          onClick={() => setModalProject(project)}
+                        />
+                      </motion.div>
+                    )}
+                  </div>
                   <div className="flex w-full gap-1 mt-1">
                   { activeProject === project.url && project.icons?.map((icon, index) => (
                     <motion.nav
@@ -80,6 +107,7 @@ const OtherProjectsSection = () => {
         </figure>
       </div>
 
+      <ProjectModal project={modalProject} onClose={() => setModalProject(null)} />
     </section>
   );
 };
