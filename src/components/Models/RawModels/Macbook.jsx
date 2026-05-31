@@ -1,11 +1,16 @@
 import React from 'react'
 import { useEffect } from "react";
 import { Html, useGLTF, useAnimations } from '@react-three/drei'
+import { useThree } from '@react-three/fiber'
 
 export function Macbook(props) {
   const group = React.useRef()
   const { nodes, materials, animations } = useGLTF('/models/macbook.glb')
   const { actions } = useAnimations(animations, group)
+  const { size, camera } = useThree()
+  const vwScale = size.width / 1440
+  const screenPos = [0.03, -0.002, 0.3]
+  const distanceFactor = 0.95 * vwScale * (camera.fov / 24)
 
   useEffect(() => {
     if (actions["Animation"]) {
@@ -47,8 +52,8 @@ export function Macbook(props) {
                 <Html
                   transform
                   occlude
-                  distanceFactor={0.95} // adjust based on camera distance
-                  position={[0.05, -0.002, 0.4]}
+                  distanceFactor={distanceFactor}
+                  position={screenPos}
                   rotation={[Math.PI / 2, 0, 0]} // tweak slightly if needed
                   style={{
                     pointerEvents: "none", // optional: prevents interaction issues

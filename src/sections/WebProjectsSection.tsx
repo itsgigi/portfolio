@@ -34,6 +34,17 @@ const projects: Projects[] = [
     ]
   },
   {
+    name: "Alessandro Scafati's Portfolio",
+    description: "A profesional portfolio showcasing Alessandro Scafati's work as an actor.",
+    url: "https://www.alessandroscafati.it/",
+    icons: [{name: 'React.js', url:'/reactLogo.png'}, {name: 'Motion', url:'framerLogo.png'}, {name: 'Hygraph', url:'hygraphLogo.png'}],
+    bullets: [
+      "Simple and elegant design focused on showcasing the actor's showreel and credits",
+      "Events section with dynamic filtering by role type (theater, film, tv) and date automatically parsed from Hygraph CMS",
+      "Gallery section with masonry layout and lightbox for high-res images from photoshoots and performances",
+    ]
+  },
+  {
     name: "mAIshed (WIP)",
     description: "A repository of react components and hooks AI oriented.",
     url: "https://m-ai-shed.vercel.app",
@@ -43,17 +54,6 @@ const projects: Projects[] = [
       "Three.js used for 3D UI demos embedded directly in component previews",
       "GSAP + Framer Motion combined for timeline-driven vs gesture-driven animations",
       "Designed as open-source: API surface kept minimal to reduce integration friction",
-    ]
-  },
-  {
-    name: "Alessandro Scafati Portfolio",
-    description: "A profesional portfolio showcasing Alessandro Scafati's work as an actor.",
-    url: "https://www.alessandroscafati.it/",
-    icons: [{name: 'React.js', url:'/reactLogo.png'}, {name: 'Three.js', url:'threejsLogo.png'}, {name: 'GSAP', url:'gsapLogo.svg'}, {name: 'Motion', url:'framerLogo.png'}],
-    bullets: [
-      "Simple and elegant design focused on showcasing the actor's showreel and credits",
-      "Events section with dynamic filtering by role type (theater, film, tv) and date automatically parsed from Hygraph CMS",
-      "Gallery section with masonry layout and lightbox for high-res images from photoshoots and performances",
     ]
   },
   {
