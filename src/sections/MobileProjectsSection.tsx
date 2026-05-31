@@ -13,6 +13,7 @@ const projects: Projects[] = [
     name: "Days of Milan App",
     description: "Restaurants, bars events and much more to explore.",
     url: "https://alessias-flat.vercel.app",
+    showButton: false,
     bullets: [
       "React Native with Expo for cross-platform iOS/Android from single codebase",
       "Location-based filtering — content sorted by proximity using device GPS",
@@ -55,7 +56,7 @@ const MobileProjectsSection = () => {
                 >
                   <h2 className="text-2xl font-bold">{project.name}</h2>
                   <p className="text-white-50">{project.description}</p>
-                  {activeProject === project.url && (
+                  {activeProject === project.url && project.showButton && (
                     <motion.div
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}

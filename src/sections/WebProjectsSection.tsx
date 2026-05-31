@@ -46,6 +46,17 @@ const projects: Projects[] = [
     ]
   },
   {
+    name: "Alessandro Scafati Portfolio",
+    description: "A profesional portfolio showcasing Alessandro Scafati's work as an actor.",
+    url: "https://www.alessandroscafati.it/",
+    icons: [{name: 'React.js', url:'/reactLogo.png'}, {name: 'Three.js', url:'threejsLogo.png'}, {name: 'GSAP', url:'gsapLogo.svg'}, {name: 'Motion', url:'framerLogo.png'}],
+    bullets: [
+      "Simple and elegant design focused on showcasing the actor's showreel and credits",
+      "Events section with dynamic filtering by role type (theater, film, tv) and date automatically parsed from Hygraph CMS",
+      "Gallery section with masonry layout and lightbox for high-res images from photoshoots and performances",
+    ]
+  },
+  {
     name: "Portfolio",
     description: "The portfolio you are looking at right now.",
     url: "https://portfolio-two-flax-84.vercel.app",
@@ -78,7 +89,7 @@ const WebProjectsSection = () => {
           
           <div className="flex flex-col gap-7 over">
             <motion.div
-              className="flex flex-col gap-10 overflow-y-auto max-h-screen pr-3"
+              className="flex flex-col gap-3 overflow-y-auto max-h-screen pr-3"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}

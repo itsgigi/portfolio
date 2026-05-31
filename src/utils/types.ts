@@ -4,6 +4,7 @@ export type Projects = {
   url: string;
   icons?: Icon[]
   bullets?: string[]
+  showButton?: boolean;
 }
   
 export type Icon = {

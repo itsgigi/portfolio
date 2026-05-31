@@ -14,6 +14,7 @@ const projects: Projects[] = [
     name: "Nights of milan",
     description: "Turning online connections into offline experiences.",
     url: "https://alessias-flat.vercel.app",
+    showButton: false,
     bullets: [
       "Event-driven social platform connecting strangers through curated Milan nightlife experiences",
       "Real-time RSVP system built to handle concurrent attendee updates without conflicts",
@@ -54,16 +55,17 @@ const OtherProjectsSection = () => {
                   className={`cursor-pointer p-4 rounded-lg hover:bg-black-200 transition ${activeProject === project.url ? 'bg-gradient-to-br from-indigo-300/70 to-indigo-900 drop-shadow-xl' : ''}`}
                   onClick={() => setActiveProject(project.url)}
                 >
-                  <div className="flex items-start justify-between gap-2">
+                  <div className="flex items-center gap-4 w-fit">
                     <div>
                       <h2 className="text-2xl font-bold">{project.name}</h2>
                       <p className="text-white-50">{project.description}</p>
                     </div>
-                    {activeProject === project.url && (
+                    {activeProject === project.url && project.showButton && (
                       <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.4, delay: 0.3 }}
+                        onClick={(e) => e.stopPropagation()}
                       >
                         <CustomButton
                           text="Details"
