@@ -5,6 +5,7 @@ export type Projects = {
   icons?: Icon[]
   bullets?: string[]
   showButton?: boolean;
+  isTryable?: boolean;
 }
   
 export type Icon = {

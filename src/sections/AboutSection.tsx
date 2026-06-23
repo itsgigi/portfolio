@@ -3,6 +3,7 @@ import CustomButton from "../components/DrawOutlineButton"
 import BubbleText from "../components/BubbleText"
 import { GrDocumentUser } from "react-icons/gr";
 import { useState } from "react";
+import { track } from "@vercel/analytics";
 import CVModal from "../components/CVModal";
 import type { Icon } from "../utils/types";
 import { Tooltip } from "react-tooltip";
@@ -60,25 +61,37 @@ const AboutSection = () => {
         </div>
       </div>
 
-      <div className="flex gap-2 mt-2">
-        <div>
-          <a data-tooltip-id="my-tooltip" data-tooltip-content={"CV"}>
-            <CustomButton text="" child={<GrDocumentUser size={30}/>} onClick={() => setIsModalOpen(true)} />
-          </a>
-          <Tooltip id="my-tooltip" />
+      <div className="flex flex-col items-center gap-2 mt-2">
+        <div className="flex gap-2">
+          <div>
+            <a data-tooltip-id="my-tooltip" data-tooltip-content={"CV"}>
+              <CustomButton text="" child={<GrDocumentUser size={30}/>} onClick={() => { setIsModalOpen(true); track('cv_open'); }} />
+            </a>
+            <Tooltip id="my-tooltip" />
+          </div>
+          <div>
+            <a
+              href="https://github.com/itsgigi"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-tooltip-id="my-tooltip2"
+              data-tooltip-content="GitHub"
+              onClick={() => track('github_click')}
+            >
+              <CustomButton text="" child={<FaGithub size={30} />} />
+            </a>
+            <Tooltip id="my-tooltip2" />
+          </div>
         </div>
-        <div>
-          <a
-            href="https://github.com/itsgigi"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-tooltip-id="my-tooltip2"
-            data-tooltip-content="GitHub"
-          >
-            <CustomButton text="" child={<FaGithub size={30} />} />
-          </a>
-          <Tooltip id="my-tooltip2" />
-        </div>
+        <CustomButton
+          text="Contact me"
+          sx="!p-2"
+          fontSize={16}
+          onClick={() => {
+            document.getElementById('contacts')?.scrollIntoView({ behavior: 'smooth' });
+            track('contact_me_click');
+          }}
+        />
       </div>
 
       {/* PDF Preview Modal */}

@@ -8,6 +8,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { FaInstagram, FaLinkedin, FaWifi } from "react-icons/fa";
 import { IoMailOutline } from "react-icons/io5";
+import { track } from "@vercel/analytics";
 import CustomButton from "../components/DrawOutlineButton";
 import BubbleText from "../components/BubbleText";
 import VirtualKeyboard from "../components/VirtualKeyboard";
@@ -135,16 +136,18 @@ export default function ContactMeSection() {
                         href="https://www.linkedin.com/in/luigi-di-loreto-023361173/"
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => track('social_click', { platform: 'linkedin' })}
                     >
                         <CustomButton text="" sx="p-0!" child={<FaLinkedin size={30} />} />
                     </a>
-                    <a href="mailto:luigi.dl@hotmail.it">
+                    <a href="mailto:luigi.dl@hotmail.it" onClick={() => track('social_click', { platform: 'email' })}>
                         <CustomButton text="" child={<IoMailOutline size={30}/>} />
                     </a>
                     <a
                         href="https://www.instagram.com/luigidiloreto/"
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => track('social_click', { platform: 'instagram' })}
                     >
                         <CustomButton text="" child={<FaInstagram size={30}/>}/>
                     </a>

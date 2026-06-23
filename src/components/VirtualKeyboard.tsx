@@ -2,6 +2,7 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 import { IoSend } from "react-icons/io5";
+import { track } from "@vercel/analytics";
 import type { Message } from "../utils/types";
 
 interface VirtualKeyboardProps {
@@ -37,6 +38,7 @@ export default function VirtualKeyboard({ messages, setMessages, isLoading, setI
     setInput("");
     setText("");
     setIsLoading(true);
+    track('ai_chat_message');
 
     const openaiFormatted = updatedMessages.map((m) => ({
       role: m.sender === "user" ? "user" as const : "assistant" as const,

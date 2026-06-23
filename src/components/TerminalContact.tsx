@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FiCheckCircle } from "react-icons/fi";
+import { track } from "@vercel/analytics";
 import {
   type ChangeEvent,
   type Dispatch,
@@ -157,8 +158,8 @@ const Summary = ({ questions, setQuestions }: SummaryProps) => {
       return { ...acc, [val.key]: val.value };
     }, {});
 
-    // Send this data to your server or whatever :)
     console.log(formData);
+    track('contact_form_send');
 
     setComplete(true);
   };

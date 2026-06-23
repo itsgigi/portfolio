@@ -1,6 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useState } from "react";
+import { track } from "@vercel/analytics";
 import IphoneModel from "../components/Models/Scenes/IphoneModel";
 import BubbleText from "../components/BubbleText";
 import { motion } from "motion/react";
@@ -52,7 +53,7 @@ const MobileProjectsSection = () => {
                 <div
                   key={idx}
                   className={`cursor-pointer p-4 rounded-lg hover:bg-black-200 transition text-end ${activeProject === project.url ? 'bg-gradient-to-br from-indigo-300/70 to-indigo-900' : ''}`}
-                  onClick={() => setActiveProject(project.url)}
+                  onClick={() => { setActiveProject(project.url); track('project_select', { project: project.name }); }}
                 >
                   <h2 className="text-2xl font-bold">{project.name}</h2>
                   <p className="text-white-50">{project.description}</p>
@@ -67,7 +68,7 @@ const MobileProjectsSection = () => {
                         text="Details"
                         sx="!p-2"
                         fontSize={14}
-                        onClick={() => setModalProject(project)}
+                        onClick={() => { setModalProject(project); track('project_details', { project: project.name }); }}
                       />
                     </motion.div>
                   )}

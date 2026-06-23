@@ -2,6 +2,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import PcModel from "../components/Models/Scenes/PcModel";
 import { useState } from "react";
+import { track } from "@vercel/analytics";
 import type { Projects } from "../utils/types";
 import { Tooltip } from 'react-tooltip'
 import { motion } from "motion/react";
@@ -45,16 +46,16 @@ const projects: Projects[] = [
     ]
   },
   {
-    name: "mAIshed (WIP)",
-    description: "A repository of react components and hooks AI oriented.",
-    url: "https://m-ai-shed.vercel.app",
-    icons: [{name: 'React.js', url:'/reactLogo.png'}, {name: 'Three.js', url:'threejsLogo.png'}, {name: 'GSAP', url:'gsapLogo.svg'}, {name: 'Motion', url:'framerLogo.png'}],
+    name: "AI Chat Assistant",
+    description: "An AI-powered chat assistant trained on my info.",
+    url: "https://portfolio-two-flax-84.vercel.app/#contacts",
+    icons: [{name: 'React.js', url:'/reactLogo.png'}, {name: 'OpenAI API', url:'/openaiLogo.png'}],
     bullets: [
-      "Component library architecture — each AI hook is isolated, tree-shakeable, and documented inline",
-      "Three.js used for 3D UI demos embedded directly in component previews",
-      "GSAP + Framer Motion combined for timeline-driven vs gesture-driven animations",
-      "Designed as open-source: API surface kept minimal to reduce integration friction",
-    ]
+      "OpenAI API integration for context-aware conversational responses",
+      "Trained on personal info to answer questions about my work and experience",
+      "Real-time streaming responses for natural conversation flow",
+    ],
+    isTryable: true,
   },
   {
     name: "Portfolio",
@@ -99,7 +100,7 @@ const WebProjectsSection = () => {
                 <div
                   key={idx}
                   className={`cursor-pointer p-1 xl:p-4 rounded-lg hover:bg-black-200 transition ${activeProject === project.url ? 'bg-gradient-to-br from-indigo-300/70 to-indigo-900 drop-shadow-xl' : ''}`}
-                  onClick={() => setActiveProject(project.url)}
+                  onClick={() => { setActiveProject(project.url); track('project_select', { project: project.name }); }}
                 >
                   <div className="flex gap-1 items-center">
                     <div>
@@ -132,10 +133,18 @@ const WebProjectsSection = () => {
                         className="ml-4"
                       >
                         <CustomButton
-                          text="Details"
+                          text={project.isTryable ? "Try" : "Details"}
                           sx="!p-2"
                           fontSize={14}
-                          onClick={() => setModalProject(project)}
+                          onClick={() => {
+                            if (project.isTryable) {
+                              document.getElementById('contacts')?.scrollIntoView({ behavior: 'smooth' });
+                              track('project_try', { project: project.name });
+                            } else {
+                              setModalProject(project);
+                              track('project_details', { project: project.name });
+                            }
+                          }}
                         />
                       </motion.div>
                     )}

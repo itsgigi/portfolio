@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { Tooltip } from "react-tooltip";
+import { track } from "@vercel/analytics";
 import type { Projects } from "../utils/types";
 import CustomButton from "./DrawOutlineButton";
 
@@ -72,7 +73,7 @@ const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
                 </ul>
               )}
 
-              <a href={project.url} target="_blank" rel="noopener noreferrer" className="self-start mt-2">
+              <a href={project.url} target="_blank" rel="noopener noreferrer" className="self-start mt-2" onClick={() => track('project_visit', { project: project.name })}>
                 <CustomButton text="Visit Site" fontSize={14} />
               </a>
             </div>
