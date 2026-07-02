@@ -12,6 +12,18 @@ import ProjectModal from "../components/ProjectModal";
 
 const projects: Projects[] = [
   {
+    name: "Rado Anatom",
+    description: "Vibecoded interactive showcase of Rado's Anatom skeleton.",
+    url: "https://rado-anatom-skeleton.vercel.app/",
+    icons: [{name: 'React.js', url:'/reactLogo.png'}, {name: 'GSAP', url:'gsapLogo.svg'}, {name: 'ChatGPT', url:'/openaiLogo.png'}, {name: 'Higgsfield', url:'/higgsfieldLogo.png'}],
+    bullets: [
+      "An interactive scroll-driven showcase of Rado's Anatom skeleton, built in React with GSAP ScrollTrigger. Each section of the page unfolds as the user scrolls, revealing the product in a cinematic, brand-aligned experience.",
+      "The entire asset pipeline was AI-powered: visuals generated and refined with Higgsfield AI, copy and ideation handled via ChatGPT, and the codebase built iteratively with Claude Code. What would have taken months a few years ago came together in days.",
+      "Vibecoding isn't just pressing enter — it took days of brand research, structure planning, design iterations and hundreds of prompt cycles. The AI does the heavy lifting, but the direction, taste and decisions are still yours.",
+      "The biggest takeaway: AI lowers the barrier to entry dramatically, but production readiness — performance, asset optimization, lazy loading, accessibility — still demands real frontend knowledge. The gap between a vibecoded prototype and a shippable product is where that knowledge lives.",
+    ]
+  },
+  {
     name: "Alessia's Flat",
     description: "House rental platform built with Next.js and Hygraph.",
     url: "https://alessias-flat.vercel.app",
@@ -57,18 +69,6 @@ const projects: Projects[] = [
     ],
     isTryable: true,
   },
-  {
-    name: "Portfolio",
-    description: "The portfolio you are looking at right now.",
-    url: "https://portfolio-two-flax-84.vercel.app",
-    icons: [{name: 'React.js', url:'/reactLogo.png'}, {name: 'Three.js', url:'threejsLogo.png'}, {name: 'GSAP', url:'gsapLogo.svg'}, {name: 'Motion', url:'framerLogo.png'}, {name: 'OpenAI API', url:'/openaiLogo.png'}],
-    bullets: [
-      "Three.js 3D models (PC, iPhone) render live website previews via iframe inside WebGL texture",
-      "GSAP ScrollTrigger drives section entrance animations tied to scroll position",
-      "OpenAI API powers the terminal chat — context-aware answers about my work",
-      "Single-page SPA with hash-based navigation and IntersectionObserver for active nav state",
-    ]
-  }
 ]
 
 const WebProjectsSection = () => {
