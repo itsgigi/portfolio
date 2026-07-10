@@ -19,9 +19,7 @@ const PcModel = ({activeProject}: PcModelProps) => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldAnimate(true)
-        }
+        setShouldAnimate(entry.isIntersecting)
       },
       { threshold: 0.5 } // Trigger when 50% of the canvas is visible
     )
@@ -40,7 +38,7 @@ const PcModel = ({activeProject}: PcModelProps) => {
   
   return (
     <div ref={canvasRef} style={{ height: '100vh' }} className='cursor-pointer'>
-      <Canvas camera={{ position: [1, 1, 2], fov: 35 }}>
+      <Canvas frameloop={shouldAnimate ? "always" : "never"} camera={{ position: [1, 1, 2], fov: 35 }}>
         <ambientLight intensity={0.2} color="#1a1a40" />
         <directionalLight intensity={1} position={[5, 5, 15]} />
         <OrbitControls

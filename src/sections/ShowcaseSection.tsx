@@ -8,10 +8,10 @@ import { motion } from "motion/react";
 import BubbleText from "../components/BubbleText";
 import CustomButton from "../components/DrawOutlineButton";
 import ProjectModal from "../components/ProjectModal";
-import { webProjects as projects } from "../data/projects";
+import { showcaseProjects as projects } from "../data/projects";
 import type { Projects } from "../utils/types";
 
-const WebProjectsSection = () => {
+const ShowcaseSection = () => {
   const [activeProject, setActiveProject] = useState<string>(projects[0].url);
   const [modalProject, setModalProject] = useState<Projects | null>(null);
   useGSAP(() => {
@@ -23,7 +23,7 @@ const WebProjectsSection = () => {
   });
 
   return (
-    <section id="hero" className="relative overflow-hidden">
+    <section id="showcase" className="relative overflow-hidden">
       <div className="hero-layout">
         {/* LEFT: Hero Content */}
         <header className="flex flex-col justify-center md:w-full w-screen md:px-20 px-5 overflow-auto">
@@ -92,7 +92,7 @@ const WebProjectsSection = () => {
                 </div>
               ))}
             </motion.div>
-            <BubbleText text="WEB PROJECTS" style="text-8xl font-bold opacity-50 mt-8 tracking-tighter"/>
+            <BubbleText text="SHOWCASE" style="text-8xl font-bold opacity-50 mt-8 tracking-tighter"/>
           </div>
         </header>
 
@@ -112,4 +112,4 @@ const WebProjectsSection = () => {
   );
 };
 
-export default WebProjectsSection;
+export default ShowcaseSection;

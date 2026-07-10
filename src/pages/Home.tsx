@@ -1,4 +1,5 @@
 import WebProjectsSection from "../sections/WebProjectsSection"
+import ShowcaseSection from "../sections/ShowcaseSection"
 import HeroSection from "../sections/HeroSection"
 import MobileProjectsSection from "../sections/MobileProjectsSection"
 import AboutSection from "../sections/AboutSection"
@@ -28,6 +29,9 @@ const Home = () => {
         </section>
         <section id="about" className="h-screen snap-start">
           <AboutSection />
+        </section>
+        <section className="h-screen snap-start">
+          <ShowcaseSection />
         </section>
         <section id="projects" className="h-screen snap-start">
           <WebProjectsSection />
