@@ -51,6 +51,17 @@ export const webProjects: Projects[] = [
 
 export const showcaseProjects: Projects[] = [
   {
+    name: "Viewsource",
+    description: "Recreations of Awwwards-winning sites, broken down by AI.",
+    url: "https://viewsource-tawny.vercel.app/",
+    icons: [{name: 'Next.js', url:'/nextjsLogo.png'}, {name: 'ChatGPT', url:'/openaiLogo.png'}],
+    bullets: [
+      "A growing collection of Awwwards-winning sites I am rebuilding from scratch, published for anyone to study and to use.",
+      "Each recreation is fed to an AI that reverse-engineers it into standalone components and the prompts that can be used to recreate them.",
+      "Goal: make top-tier web design techniques accessible — instead of just admiring award-winning sites, developers can grab the pieces and prompts behind them.",
+    ]
+  },
+  {
     name: "Mustang Fastback",
     description: "Scroll-driven tribute showcase of the 1968 Ford Mustang Fastback.",
     url: "https://ford-showcase.vercel.app",
